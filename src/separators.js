@@ -1,26 +1,48 @@
 'use strict';
+function addComma(s)
+{
+  var re1 = /\d{1,3}/;
+  var re2 = /\d{4,6}/;
+  var re3 = /\d{7,}/;
+  if(re1.test(s))
+    {
+      return s;
+    }
+
+    if(re2.test(s))
+    {
+      
+      return substring(0,s.length - 3) + ',' + substring(s.length-3)
+      
+    }
+    if(re3.test(s))
+      return substring(0,s.length-6) + ',' + substring(s.length - 6, s.length - 3 ) + ',' + substring(s.length - 3);
+    
+    return '';
+}
 
 function thousands_separators(num) {
 	var s = (num).toString();
-	var re1 = /\d{3}/;
-	var re2 = /\d{4}/;
-	var re3 = /\d{7}/;
-	var re4 = /\d{4}\.0+/;
+	
+	var re4 = /\d+\.0+/;
 	var re5 = /\d{3}\.\d+/;
 	
-  	if(re1.test(s))
-  	{
-  		return s;
-  	}
+    var out_come = addComma(s);
+    if(out_come !== '')
+      return out_come;
 
-  	if(re2.test(s))
-  		return substring(0,1) + ',' + substring(1);
-  	if(re3.test(s))
-  		return substring(0,1) + ',' + substring(1,4) + ',' + substring(4);
-  	if(re4.test(s))
-  		return substring(0,1) + ',' + substring(1,4);
+    if(re4.test(s))
+  	{
+
+      var s2 = s.substring(0,s.indexOf('.'));
+      return addComma(s2);
+    }
   	if(re5.test(s))
-  		return substring(0,3) + '.' + substring(4);  
+  	{
+      var s3 = addComma(s.substring(0,s.indexOf('.')));
+      var s4 = addComma(s.substring(s.indexOf('.')) + 1);
+      return s3 + '.' + s4;
+    }
 }
 
 module.exports = thousands_separators;
