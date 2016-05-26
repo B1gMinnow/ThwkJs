@@ -1,19 +1,17 @@
 'use strict';
 function addComma(s)
 {
-  var re1 = /\d{1,3}/;
-  var re2 = /\d{4,6}/;
-  var re3 = /\d{7,9}/;
+  var re1 = /^\d{1,3}$/;
+  var re2 = /^\d{4,6}$/;
+  var re3 = /^\d{7,9}$/;
   if(re1.test(s))
     {
       return s;
     }
-
-
     if(re2.test(s))
     {
       
-      return substring(0,s.length - 3) + ',' + substring(s.length-3);
+      return s.substring(0,s.length - 3) + ',' + s.substring(s.length-3);
       
     }
     if(re3.test(s))
@@ -25,10 +23,11 @@ function addComma(s)
 function thousands_separators(num) {
 	var s = (num).toString();
 	
-	var re4 = /\d+\.0+/;
-	var re5 = /\d{3}\.\d+/;
+	var re4 = /^\d+\.0+$/;
+	var re5 = /^\d+\.\d+$/;
 	
     var out_come = addComma(s);
+    
     if(out_come !== '')
       return out_come;
 
@@ -45,5 +44,7 @@ function thousands_separators(num) {
       return s3 + '.' + s4;
     }
 }
+
+
 
 module.exports = thousands_separators;
