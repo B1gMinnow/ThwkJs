@@ -40,7 +40,7 @@ function thousands_separators(num) {
   	if(re5.test(s))
   	{
       var s3 = addComma(s.substring(0,s.indexOf('.')));
-      var s4 = addComma(s.substring(s.indexOf('.')) + 1);
+      var s4 = s.substring(s.indexOf('.') + 1);
       return s3 + '.' + s4;
     }
 }
